@@ -21,13 +21,13 @@ function! s:unite_source.gather_candidates(args, context)
         \ }')
 endfunction
 
-let vimshell_interactive = {
+let iexe = {
       \ 'description': 'iexe the command',
       \ }
-function! vimshell_interactive.func(x)
+function! iexe.func(x)
   execute 'VimShellInteractive' a:x.action__iexe
 endfunction
-call unite#custom_action('source/rake/*', 'vimshell_interactive', vimshell_interactive)
+call unite#custom_action('source/rake/*', 'iexe', iexe)
 
 "let vimshellsendstring = {}
 "function! vimshellsendstring.func(x)
