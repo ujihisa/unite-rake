@@ -17,14 +17,17 @@ function! s:unite_source.gather_candidates(args, context)
         \ "source": "rake",
         \ "kind": "command",
         \ "action__command": "VimProcBang " . v:val[0],
+        \ "action__iexe": v:val[0],
         \ }')
 endfunction
 
-let vimshellinteractive = {}
-function! vimshellinteractive.func(x)
-  execute 'VimShellInteractive' a:x.word
+let vimshell_interactive = {
+      \ 'description': 'iexe the command',
+      \ }
+function! vimshell_interactive.func(x)
+  execute 'VimShellInteractive' a:x.action__iexe
 endfunction
-call unite#custom_action('source/rake/*', 'vimshellinteractive', vimshellinteractive)
+call unite#custom_action('source/rake/*', 'vimshell_interactive', vimshell_interactive)
 
 "let vimshellsendstring = {}
 "function! vimshellsendstring.func(x)
