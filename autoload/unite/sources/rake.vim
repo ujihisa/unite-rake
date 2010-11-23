@@ -20,6 +20,18 @@ function! s:unite_source.gather_candidates(args, context)
         \ }')
 endfunction
 
+let vimshellinteractive = {}
+function! vimshellinteractive.func(x)
+  execute 'VimShellInteractive' a:x.word
+endfunction
+call unite#custom_action('source/rake/*', 'vimshellinteractive', vimshellinteractive)
+
+"let vimshellsendstring = {}
+"function! vimshellsendstring.func(x)
+"  execute 'VimShellSendString' a:x.word
+"endfunction
+"call unite#custom_action('source/rake/*', 'vimshellsendstring', vimshellsendstring)
+
 function! unite#sources#rake#define()
   return executable('rake') ? s:unite_source : []
 endfunction
